@@ -1,5 +1,11 @@
 package com.tienda.servicio_videojuego.repository;
 
-public class CarritoRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.tienda.servicio_videojuego.model.Carro;
+
+@Repository
+public interface CarritoRepository extends JpaRepository<Carro,Integer>{
 
 }
