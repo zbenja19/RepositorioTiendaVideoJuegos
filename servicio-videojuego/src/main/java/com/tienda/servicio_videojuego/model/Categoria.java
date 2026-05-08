@@ -34,8 +34,4 @@ public class Categoria {
     @Column(length=200)
     private String descripcion;
 
-    @OneToMany(mappedBy="categoria")
-    private List<VideoJuego>videojuegos;
-
-
 }
