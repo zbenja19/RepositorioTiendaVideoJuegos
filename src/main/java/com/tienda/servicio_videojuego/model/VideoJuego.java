@@ -1,7 +1,5 @@
 package com.tienda.servicio_videojuego.model;
 
-
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,10 +13,12 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -40,12 +40,12 @@ public class VideoJuego {
     @NotNull(message= "El precio no puede quedar vacio")
     @Min(value= 1, message= "El precio no puede ser menor a 1")
     @Column(name= "precio", nullable=false)
-    private double precio;
+    private Double precio;
 
     @NotNull(message="El stock no puede quedar vacio")
     @Min(value= 0, message= "El stock no puede ser negativo")
     @Column(name="stock", nullable=false)
-    private int stock;
+    private Integer stock;
     
     @ManyToOne
     @JoinColumn(name="idCategoria")

@@ -47,13 +47,17 @@ public class CategoriaService {
         .orElseThrow(() -> new RuntimeException("Categoria no encontrada"));
     }
 
-    public Categoria actualizar(Integer id,Categoria categoria){
+    public Categoria actualizar(Integer id,Categoria categoriaNva){
         Categoria categoria = categoriaRepository.findById(id)
          .orElseThrow(() -> new RuntimeException("No encontrada"));
-         if(categoria.getNombre() != null){
-            categoria.setNombre(categoria.ge);
+         if(categoriaNva.getNombre() != null){
+            categoria.setNombre(categoria.getNombre());
          }
-
+         if (categoriaNva.getDescripcion() != null){
+            categoria.setDescripcion(categoria.getDescripcion());
+         }
+         return categoriaRepository.save(categoria);
     }
 
+  
 }

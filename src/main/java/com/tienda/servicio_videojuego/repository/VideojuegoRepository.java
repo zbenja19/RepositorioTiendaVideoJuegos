@@ -14,4 +14,6 @@ public interface VideojuegoRepository extends JpaRepository<VideoJuego,Integer> 
 
     @Query("SELECT v FROM VideoJuego v WHERE v.categoria.id = :idCategoria")
     List<VideoJuego> buscarVideoJuegos(@Param("idCategoria") Integer idCategoria);
+
+    List<VideoJuego>findByNombreContaining(String nombre);
 }
