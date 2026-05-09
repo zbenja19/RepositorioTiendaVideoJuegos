@@ -23,8 +23,8 @@ public class DetallePedido {
     private Integer idDetallePedido;
 
     @ManyToMany
-    @JoinColumn(name= "idCarrito")
-    private Carrito carrito;
+    @JoinColumn(name= "idCarro")
+    private Carro carro;
 
     @ManyToMany
     @JoinColumn(name= "idVideoJuego")
