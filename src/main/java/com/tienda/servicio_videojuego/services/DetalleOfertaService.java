@@ -37,17 +37,24 @@ public class DetalleOfertaService {
         return convertirADetalleOfertaDTO(detalleOfertaGuardado);
     }
 
-    private DetalleOfertaDTO convertirADetalleOfertaDTO(detalleOfertas detalleOferta){
-        DetalleOfertaDTO detalleOfertaDTO = new DetalleOfertaDTO();
-        detalleOfertaDTO.setIdDetalleOferta(detalleOferta.getIdDetalleOferta());
-        detalleOfertaDTO.setIdOferta(detalleOferta.getIdOferta());
-        detalleOfertaDTO.setIdVideoJuego(detalleOferta.getIdVideojuego());
-        detalleOfertaDTO.setPrecio(detalleOferta.getPrecio());
-        if (detalleOferta.getIdOferta() != null){
-            detalleOfertaDTO.setIdOferta(detalleOferta.getIdOferta());
-        }else{
-            detalleOfertaDTO.setIdOferta("Desconocida");
+    private DetalleOfertaDTO convertirADetalleOfertaDTO(detalleOfertas detalle) {
+        DetalleOfertaDTO dto = new DetalleOfertaDTO();
+        
+        dto.setIdDetalleOferta(detalle.getIdDetalleOferta());
+
+        
+        if (detalle.getIdDetalleOferta() != null) {
+            dto.setIdOferta(detalle.getIdDetalleOferta().getIdDetalleOferta());
+        } else {
+            dto.setIdOferta(0);
         }
-        return detalleOfertaDTO;
+        
+        if (detalle.getVideojuego() != null) {
+            dto.setIdVideoJuegos(detalle.getVideojuego().getIdVideoJuego());
+        } else {
+            dto.setIdVideoJuegos(0);
+        }
+
+        return dto;
     }
 }

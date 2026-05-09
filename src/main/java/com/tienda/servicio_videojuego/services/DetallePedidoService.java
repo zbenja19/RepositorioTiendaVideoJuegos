@@ -37,17 +37,17 @@ public class DetallePedidoService {
         return convertirADetallePedidoDTO(detallePedidoGuardado);
     }
 
-    private DetallePedidoDTO convertirADetallePedidoDTO(DetallePedido detallePedido){
-        DetallePedidoDTO detallePedidoDTO = new DetallePedidoDTO();
-        detallePedidoDTO.setIdDetallePedido(detallePedido.getIdDetallePedido());
-        detallePedidoDTO.setIdVideoJuego(detallePedido.getIdVideoJuego());
-        detallePedidoDTO.setCantidad(detallePedido.getCantidad());
-        detallePedidoDTO.setPrecio(detallePedido.getPrecio());
-        if (detallePedido.getIdVideoJuego() != null){
-            detallePedidoDTO.setIdVideoJuego(detallePedido.getIdVideoJuego());
-        }else{
-            detallePedidoDTO.setIdVideoJuego("Desconocido");
+    private DetallePedidoDTO convertirADetallePedidoDTO(DetallePedido detallePedido) {
+    DetallePedidoDTO detallePedidoDTO = new DetallePedidoDTO();
+
+    detallePedidoDTO.setIdDetallePedido(detallePedido.getIdDetallePedido());
+
+    if (detallePedido.getVideoJuego() != null) {
+        detallePedidoDTO.setIdVideoJuego(detallePedido.getVideoJuego().getIdVideoJuego());
+    } else {
+        
+        detallePedidoDTO.setIdVideoJuego(0); 
         }
-        return detallePedidoDTO;
+    return detallePedidoDTO;
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.tienda.servicio_videojuego.DTO.PagoDTO;
 import com.tienda.servicio_videojuego.model.Pago;
+import com.tienda.servicio_videojuego.repository.PagoRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -16,23 +17,23 @@ import jakarta.transaction.Transactional;
 public class PagoService {
 
     @Autowired
-    private DetallePedidoService detallePedidoService;
+    private PagoRepository pagoRepository;
 
     public List<PagoDTO> obtenerTodos(){
         List<PagoDTO> pagos = new ArrayList<>();
-        for (Pago pago : PagoRepository.findAll()){
+        for (Pago pago : pagoRepository.findAll()){
             pagos.add(convertirAPagoDTO(pago));
         }
         return pagos;
     }
     
     public PagoDTO buscarPorId(Integer idPago){
-        Pago pago = PagoRepository.findById(idPago).orElseThrow(() -> new RuntimeException("Pago no encontrado"));
+        Pago pago = pagoRepository.findById(idPago).orElseThrow(() -> new RuntimeException("Pago no encontrado"));
         return convertirAPagoDTO(pago);
     }
 
     public PagoDTO guardar(Pago pago){
-        Pago pagoGuardado = PagoRepository.save(pago);
+        Pago pagoGuardado = pagoRepository.save(pago);
         return convertirAPagoDTO(pagoGuardado);
     }
 
