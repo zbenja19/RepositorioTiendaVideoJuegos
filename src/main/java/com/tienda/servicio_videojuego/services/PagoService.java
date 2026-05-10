@@ -42,6 +42,7 @@ public class PagoService {
         pagoDTO.setIdPago(pago.getIdPago());
         pagoDTO.setIdDetallePedido(pago.getIdDetallePedido());
         pagoDTO.setMonto(pago.getMonto());
+        
         if (pago.getIdDetallePedido() != null){
             pagoDTO.setIdDetallePedido(pago.getIdDetallePedido());
         }else{

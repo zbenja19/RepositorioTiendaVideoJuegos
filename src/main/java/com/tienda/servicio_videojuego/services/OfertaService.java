@@ -37,17 +37,20 @@ public class OfertaService {
         return convertirAOfertaDTO(ofertaGuardada);
     }
 
-    private OfertaDTO convertirAOfertaDTO(Oferta oferta){
-        OfertaDTO ofertaDTO = new OfertaDTO();
-        ofertaDTO.setIdOferta(oferta.getIdOferta());
-        ofertaDTO.setDescripcion(oferta.getDescripcion());
-        ofertaDTO.setDescuento(oferta.getDescuento());
-        if (oferta.getDescripcion() != null){
-            ofertaDTO.setDescripcion(oferta.getDescripcion());
-        }else{
-            ofertaDTO.setDescripcion("Desconocida");
-        }
-        return ofertaDTO;
+    private OfertaDTO convertirAOfertaDTO(Oferta oferta) {
+    OfertaDTO dto = new OfertaDTO();
+    dto.setIdOferta(oferta.getIdOferta());
+    dto.setFechaInicio(oferta.getFechaInicio());
+    dto.setFechaTermino(oferta.getFechaTermino());
+
+    
+    if (oferta.getVideojuego() != null) {
+        dto.setIdVideoJuego(oferta.getVideojuego().getIdVideoJuego());
+    } else {
+        dto.setIdVideoJuego(0);
     }
+
+    return dto;
+}
 
 }
