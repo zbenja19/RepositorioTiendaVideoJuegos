@@ -3,6 +3,7 @@ package com.tienda.servicio_videojuego.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.tienda.servicio_videojuego.DTO.VideoJuegoDTO;
 import com.tienda.servicio_videojuego.model.VideoJuego;
 import com.tienda.servicio_videojuego.repository.VideojuegoRepository;
 import jakarta.transaction.Transactional;
@@ -15,8 +16,10 @@ public class VideoJuegoService {
     private VideojuegoRepository videojuegoRepository;
 
     // Metodos
-    public List<VideoJuego> listar (){
-        return videojuegoRepository.findAll();
+    public List <VideoJuegoDTO> listarTodos(){
+        return videojuegoRepository.findAll().stream()
+                        .map(this::convertirADTO)
+                        .toList();
     }
 
     public VideoJuego guardar(VideoJuego videoJuego){
@@ -72,6 +75,27 @@ public class VideoJuegoService {
         return videojuegoRepository.save(videoj);
     }
 
+    private VideoJuegoDTO convertirADTO(VideoJuego videoJuego) {
+        VideoJuegoDTO videoJuegoDTO = new VideoJuegoDTO();
+        
+        videoJuegoDTO.setIdVideoJuego(videoJuego.getIdVideoJuego());
+        videoJuegoDTO.setNombre(videoJuego.getNombre());
+        videoJuegoDTO.setDescripcion(videoJuego.getDescripcion());
+        videoJuegoDTO.setPrecio(videoJuego.getPrecio());
+        videoJuegoDTO.setStock(videoJuego.getStock());
+        videoJuegoDTO.setPrecio(videoJuego.getPrecio());
 
+        if (videoJuego.getCategoria() != null) {
+            videoJuegoDTO.setNombreCategoria(videoJuego.getCategoria().getNombre());
+        } else {
+            videoJuegoDTO.setNombreCategoria(null);
+        }
+        if(videoJuego.getPlataforma() != null){
+            videoJuegoDTO.setNombreplataforma(videoJuego.getPlataforma().getNombre());
+        }
+
+        return videoJuegoDTO;
+
+    }
 
 }

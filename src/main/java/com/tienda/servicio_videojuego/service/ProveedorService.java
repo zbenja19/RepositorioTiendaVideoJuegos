@@ -1,9 +1,12 @@
 package com.tienda.servicio_videojuego.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.tienda.servicio_videojuego.DTO.ProveedorDTO;
 import com.tienda.servicio_videojuego.model.Proveedor;
 import com.tienda.servicio_videojuego.repository.ProveedorRepository;
 import jakarta.transaction.Transactional;
@@ -17,46 +20,65 @@ public class ProveedorService {
 
     //Metodos
 
-    public List <Proveedor> listar(){
-        return proveedorRepository.findAll();
+    public List <ProveedorDTO> listarTodos(){
+        return proveedorRepository.findAll().stream()
+                        .map(this::convertirADTO)
+                        .toList();
     }
 
-    public Proveedor guardar(Proveedor proveedor){
+    public Proveedor guardarProveedor(Proveedor proveedor){
         return proveedorRepository.save(proveedor);       
     }
 
+    public String eliminar(Integer id) {
+        try {
+            Proveedor proveedor = proveedorRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("No se ha podido eliminar el " + id + " no existe."));
+            proveedorRepository.delete(proveedor);
+            return "El proveedor'" + proveedor.getNombre() + "ha sido eliminado exitosamente";
+        } catch (RuntimeException e) {
+            return e.getMessage();
+        }
+    }
+   
 
-    public String eliminar(Integer id){
-
+    public ProveedorDTO buscarPorId(Integer id){
         Proveedor proveedor = proveedorRepository.findById(id)
-        .orElseThrow(() -> new RuntimeException("No encontrado"));
-    
-        proveedorRepository.delete(proveedor);
-        return "Proveedor"+proveedor.getNombre()+"Eliminado exitosamente";
+           .orElseThrow(() -> new RuntimeException("¡El Proveedor no esta registrado!"));
+        return convertirADTO(proveedor);
     }
 
-    public Proveedor buscarPorId(Integer id){
-        return proveedorRepository.findById(id)
-        .orElseThrow(() -> new RuntimeException("Proveedor no encontrado"));
-    }
-
-    public Proveedor actualizarProveedor(Integer id,Proveedor nvoProveedor){
-        Proveedor proveedor = proveedorRepository.findById(id)
+    public ProveedorDTO actualizarProveedor(Integer id,Proveedor nvoProveedor){
+        Proveedor proveedordDto = proveedorRepository.findById(id)
         .orElseThrow(() -> new RuntimeException("¡El Proveedor no esta registrado!"));
         if(nvoProveedor.getNombre() != null){
-            proveedor.setNombre(proveedor.getNombre());
+            proveedordDto.setNombre(nvoProveedor.getNombre());
         }
         if(nvoProveedor.getEmail() != null){
-            proveedor.setEmail(proveedor.getEmail());
+            proveedordDto.setEmail(nvoProveedor.getEmail());
         }
         if(nvoProveedor.getTelefono() != null){
-            proveedor.setTelefono(nvoProveedor.getTelefono());
+            proveedordDto.setTelefono(nvoProveedor.getTelefono());
         }
-        return proveedorRepository.save(proveedor);
+        Proveedor proveedorActualizado = proveedorRepository.save(proveedordDto);
+        return convertirADTO(proveedorActualizado);
+    }
+    
+    private ProveedorDTO convertirADTO(Proveedor proveedor) {
+        ProveedorDTO proveedorDTO = new ProveedorDTO();
+        proveedorDTO.setNombre(proveedor.getNombre());
+        proveedorDTO.setEmail(proveedor.getEmail());
+        proveedorDTO.setTelefono(proveedor.getTelefono());
+
+        if (proveedor.getIdProveedor() != null) {
+            proveedorDTO.setIdProveedor(proveedor.getIdProveedor());
+        } else {
+            proveedorDTO.setIdProveedor(null);
+        }
+
+        return proveedorDTO;
+
     }
 
-
-
-
-
+    
 }

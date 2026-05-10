@@ -24,7 +24,7 @@ public class Categoria {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idCategoria;
 
     @NotBlank(message="El nombre de la categoria es obligatoria")
     @Size(min=2,max=50)

@@ -36,5 +36,5 @@ public class Oferta {
     
     @ManyToMany
     @JoinColumn(name="idVideoJuego")
-    private VideoJuego videoJuego;
+    private VideoJuego VideoJuego;
 }

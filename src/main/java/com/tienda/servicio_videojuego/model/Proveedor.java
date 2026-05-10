@@ -21,7 +21,7 @@ public class Proveedor {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
+    private Integer idProveedor;
 
     @NotBlank(message="El nombre del proveedor es obligatoria")
     @Size(min=2,max=50)
