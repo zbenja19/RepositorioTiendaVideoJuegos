@@ -1,18 +1,12 @@
 package com.tienda.servicio_videojuego.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.tienda.servicio_videojuego.DTO.CategoriaDTO;
-import com.tienda.servicio_videojuego.DTO.VideoJuegoDTO;
 import com.tienda.servicio_videojuego.model.Categoria;
-import com.tienda.servicio_videojuego.model.Proveedor;
-import com.tienda.servicio_videojuego.model.VideoJuego;
 import com.tienda.servicio_videojuego.repository.CategoriaRepository;
 import com.tienda.servicio_videojuego.repository.VideojuegoRepository;
-
 import jakarta.transaction.Transactional;
 
 @Service
