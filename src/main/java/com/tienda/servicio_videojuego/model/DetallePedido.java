@@ -24,7 +24,7 @@ public class DetallePedido {
 
     @ManyToMany
     @JoinColumn(name= "idCarrito")
-    private Carrito carrito;
+    private Carro carrito;
 
     @ManyToMany
     @JoinColumn(name= "idVideoJuego")

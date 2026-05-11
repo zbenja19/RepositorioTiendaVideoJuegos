@@ -1,4 +1,4 @@
-package com.tienda.servicio_videojuego.services;
+package com.tienda.servicio_videojuego.service;
 
 import java.util.ArrayList;
 import java.util.List;
