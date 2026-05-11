@@ -34,9 +34,10 @@ public class VideoJuegoService {
         return "Videojuego"+  videoJ.getNombre()+"Eliminado exitosamente";
     } 
 
-    public VideoJuego buscarPorId(Integer id){
-        return videojuegoRepository.findById(id)
+    public VideoJuegoDTO buscarPorId(Integer id){
+        VideoJuego videojuego = videojuegoRepository.findById(id)
         .orElseThrow(() -> new RuntimeException("Videojuego no encontrado"));
+        return convertirADTO(videojuego);
     }
 
     public List<VideoJuego> buscarPornombre(String nombre){
@@ -48,31 +49,33 @@ public class VideoJuegoService {
         return juegos;
     }
 
-    public VideoJuego actualizaVideoJuego(Integer id,VideoJuego nvoVideoJuego){
-        VideoJuego videoj = videojuegoRepository.findById(id)
+    public VideoJuegoDTO actualizaVideoJuego(Integer id,VideoJuego nvoVideoJuego){
+        VideoJuego videojuegoDTO = videojuegoRepository.findById(id)
         .orElseThrow(() -> new RuntimeException("¡El Videojuego no esta registrado!"));
+       
         if(nvoVideoJuego.getNombre() != null){
-            videoj.setNombre(nvoVideoJuego.getNombre());
+            videojuegoDTO.setNombre(nvoVideoJuego.getNombre());
         }
         if(nvoVideoJuego.getDescripcion() != null){
-            videoj.setDescripcion(nvoVideoJuego.getDescripcion());
+            videojuegoDTO.setDescripcion(nvoVideoJuego.getDescripcion());
         }
         if(nvoVideoJuego.getPrecio() != null){
-            videoj.setPrecio(nvoVideoJuego.getPrecio());
+            videojuegoDTO.setPrecio(nvoVideoJuego.getPrecio());
         }
         if(nvoVideoJuego.getStock() != null){
-            videoj.setStock(nvoVideoJuego.getStock());
+            videojuegoDTO.setStock(nvoVideoJuego.getStock());
         }
         if(nvoVideoJuego.getCategoria() != null){
-            videoj.setCategoria(nvoVideoJuego.getCategoria());
+            videojuegoDTO.setCategoria(nvoVideoJuego.getCategoria());
         }
         if(nvoVideoJuego.getPlataforma() != null){
-            videoj.setPlataforma(nvoVideoJuego.getPlataforma());
+            videojuegoDTO.setPlataforma(nvoVideoJuego.getPlataforma());
         }
         if(nvoVideoJuego.getProveedor() != null){
-            videoj.setProveedor(nvoVideoJuego.getProveedor());
+            videojuegoDTO.setProveedor(nvoVideoJuego.getProveedor());
         }
-        return videojuegoRepository.save(videoj);
+        VideoJuego videoJuegoActualizado = videojuegoRepository.save(videojuegoDTO);
+        return convertirADTO(videoJuegoActualizado);
     }
 
     private VideoJuegoDTO convertirADTO(VideoJuego videoJuego) {
@@ -83,7 +86,6 @@ public class VideoJuegoService {
         videoJuegoDTO.setDescripcion(videoJuego.getDescripcion());
         videoJuegoDTO.setPrecio(videoJuego.getPrecio());
         videoJuegoDTO.setStock(videoJuego.getStock());
-        videoJuegoDTO.setPrecio(videoJuego.getPrecio());
 
         if (videoJuego.getCategoria() != null) {
             videoJuegoDTO.setNombreCategoria(videoJuego.getCategoria().getNombre());
@@ -93,9 +95,10 @@ public class VideoJuegoService {
         if(videoJuego.getPlataforma() != null){
             videoJuegoDTO.setNombreplataforma(videoJuego.getPlataforma().getNombre());
         }
-
+        if(videoJuego.getProveedor() != null){
+            videoJuegoDTO.setNombreProveedor(videoJuego.getProveedor().getNombre());
+        }
         return videoJuegoDTO;
-
     }
 
 }

@@ -5,7 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tienda.servicio_videojuego.DTO.CategoriaDTO;
+import com.tienda.servicio_videojuego.DTO.VideoJuegoDTO;
 import com.tienda.servicio_videojuego.model.Categoria;
+import com.tienda.servicio_videojuego.model.Proveedor;
+import com.tienda.servicio_videojuego.model.VideoJuego;
 import com.tienda.servicio_videojuego.repository.CategoriaRepository;
 import com.tienda.servicio_videojuego.repository.VideojuegoRepository;
 
@@ -22,8 +26,9 @@ public class CategoriaService {
     private VideojuegoRepository videojuegoRepository;
 
     //METODOS
-    public List <Categoria> listar(){
-        return categoriaRepository.findAll();
+    public List <CategoriaDTO> listarTodos(){
+        return categoriaRepository.findAll().stream()
+        .map(this::convertirADTO).toList();
     }
 
     public Categoria guardar(Categoria categoria){
@@ -42,22 +47,37 @@ public class CategoriaService {
         return "Categoria"+categoria.getNombre()+"Eliminada exitosamente";
     }
 
-    public Categoria buscarPorId(Integer id){
-        return categoriaRepository.findById(id)
-        .orElseThrow(() -> new RuntimeException("Categoria no encontrada"));
+    public CategoriaDTO buscarPorId(Integer id){
+        Categoria categoria = categoriaRepository.findById(id)
+           .orElseThrow(() -> new RuntimeException("¡La categoria no esta registrado!"));
+        return convertirADTO(categoria);
     }
 
-    public Categoria actualizar(Integer id,Categoria categoriaNva){
-        Categoria categoria = categoriaRepository.findById(id)
+    public CategoriaDTO actualizar(Integer id,Categoria categoriaNva){
+        Categoria categoriaDTO = categoriaRepository.findById(id)
          .orElseThrow(() -> new RuntimeException("No encontrada"));
          if(categoriaNva.getNombre() != null){
-            categoria.setNombre(categoria.getNombre());
+            categoriaDTO.setNombre(categoriaDTO.getNombre());
          }
          if (categoriaNva.getDescripcion() != null){
-            categoria.setDescripcion(categoria.getDescripcion());
+            categoriaDTO.setDescripcion(categoriaDTO.getDescripcion());
          }
-         return categoriaRepository.save(categoria);
+         return convertirADTO(categoriaDTO);
     }
 
+    private CategoriaDTO convertirADTO(Categoria categoria) {
+        CategoriaDTO categoriaDTO = new CategoriaDTO();
+        
+        categoriaDTO.setIdCategoria(categoria.getIdCategoria());
+        categoriaDTO.setNombre(categoria.getNombre());
+        categoriaDTO.setDescripcion(categoria.getDescripcion());
+
+        if (categoriaDTO.getIdCategoria() != null) {
+            categoriaDTO.setIdCategoria(categoria.getIdCategoria());
+        } else {
+            categoriaDTO.setIdCategoria(null);
+        }
+        return categoriaDTO;
   
+    }
 }

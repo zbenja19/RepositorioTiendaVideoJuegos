@@ -1,11 +1,8 @@
 package com.tienda.servicio_videojuego.service;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.tienda.servicio_videojuego.DTO.ProveedorDTO;
 import com.tienda.servicio_videojuego.model.Proveedor;
 import com.tienda.servicio_videojuego.repository.ProveedorRepository;
@@ -19,7 +16,6 @@ public class ProveedorService {
     private ProveedorRepository proveedorRepository;
 
     //Metodos
-
     public List <ProveedorDTO> listarTodos(){
         return proveedorRepository.findAll().stream()
                         .map(this::convertirADTO)
@@ -31,16 +27,11 @@ public class ProveedorService {
     }
 
     public String eliminar(Integer id) {
-        try {
-            Proveedor proveedor = proveedorRepository.findById(id)
-                    .orElseThrow(() -> new RuntimeException("No se ha podido eliminar el " + id + " no existe."));
+        Proveedor proveedor = proveedorRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("No se ha podido eliminar, el ID " + id + " no existe."));
             proveedorRepository.delete(proveedor);
-            return "El proveedor'" + proveedor.getNombre() + "ha sido eliminado exitosamente";
-        } catch (RuntimeException e) {
-            return e.getMessage();
-        }
+            return "El proveedor '" + proveedor.getNombre() + "' ha sido eliminado exitosamente";
     }
-   
 
     public ProveedorDTO buscarPorId(Integer id){
         Proveedor proveedor = proveedorRepository.findById(id)
@@ -66,6 +57,7 @@ public class ProveedorService {
     
     private ProveedorDTO convertirADTO(Proveedor proveedor) {
         ProveedorDTO proveedorDTO = new ProveedorDTO();
+        
         proveedorDTO.setNombre(proveedor.getNombre());
         proveedorDTO.setEmail(proveedor.getEmail());
         proveedorDTO.setTelefono(proveedor.getTelefono());
