@@ -1,20 +1,21 @@
 package com.tienda.servicio_videojuego.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.tienda.servicio_videojuego.DTO.OfertaDTO;
-import com.tienda.servicio_videojuego.services.OfertaService;
+import com.tienda.servicio_videojuego.model.Oferta;
+import com.tienda.servicio_videojuego.service.OfertaService;
+
 
 @RestController
-@RequestMapping("/api/v1/oferta")
+@RequestMapping("/api/v1/ofertas")
 public class OfertaController {
 
     @Autowired
@@ -38,7 +39,7 @@ public class OfertaController {
             return ResponseEntity.notFound().build();
         }
     }
-
+    
     @PostMapping
     public ResponseEntity<OfertaDTO> agregarOferta(@RequestBody Oferta oferta){
         try{

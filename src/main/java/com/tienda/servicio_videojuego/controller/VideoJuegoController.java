@@ -1,6 +1,7 @@
 package com.tienda.servicio_videojuego.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,7 @@ import com.tienda.servicio_videojuego.model.VideoJuego;
 import com.tienda.servicio_videojuego.service.VideoJuegoService;
 
 @RestController
-@RequestMapping(("/api/v1/videojuegos"))
+@RequestMapping("/api/v1/videojuegos")
 public class VideoJuegoController {
 
     @Autowired

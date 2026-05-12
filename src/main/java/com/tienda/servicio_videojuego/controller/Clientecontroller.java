@@ -12,17 +12,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.tienda.servicio_videojuego.DTO.ClienteDTO;
 import com.tienda.servicio_videojuego.model.Cliente;
-import com.tienda.servicio_videojuego.service.Clienteservice;
+import com.tienda.servicio_videojuego.service.ClienteService;
 
 @RestController
-@RequestMapping("/api/v1/Pedidos")
-public class Clientecontroller {
+@RequestMapping("/api/v1/pedidos")
+public class ClienteController {
     
     @Autowired
-    private Clienteservice clienteservice;
+    private ClienteService clienteservice;
 
     @GetMapping
     public List<ClienteDTO> listarTodos() {

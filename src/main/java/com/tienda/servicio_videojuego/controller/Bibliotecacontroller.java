@@ -13,19 +13,19 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.tienda.servicio_videojuego.model.Biblioteca;
+import com.tienda.servicio_videojuego.service.BibliotecaService;
 
-import com.tienda.servicio_videojuego.model.biblioteca;
-import com.tienda.servicio_videojuego.service.Bibliotecaservice;
 
 @RestController
 @RequestMapping("/api/v1/bibliotecas")
-public class Bibliotecacontroller {
+public class BibliotecaController {
     @Autowired
-    private Bibliotecaservice bibliotecaService;
+    private BibliotecaService bibliotecaService;
 
     @GetMapping
-    public ResponseEntity<List<biblioteca>> obtenerTodas() {
-        List<biblioteca> bibliotecas = bibliotecaService.obtenerTodas();
+    public ResponseEntity<List<Biblioteca>> obtenerTodas() {
+        List<Biblioteca> bibliotecas = bibliotecaService.obtenerTodas();
         if (bibliotecas.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -33,9 +33,9 @@ public class Bibliotecacontroller {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<biblioteca> buscarPorId(@PathVariable Integer id) {
+    public ResponseEntity<Biblioteca> buscarPorId(@PathVariable Integer id) {
         try {
-            biblioteca biblio = bibliotecaService.buscarPorId(id);
+            Biblioteca biblio = bibliotecaService.buscarPorId(id);
             return new ResponseEntity<>(biblio, HttpStatus.OK);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
@@ -43,9 +43,9 @@ public class Bibliotecacontroller {
     }
 
     @PostMapping
-    public ResponseEntity<biblioteca> guardar(@RequestBody biblioteca biblioteca) {
+    public ResponseEntity<Biblioteca> guardar(@RequestBody Biblioteca biblioteca) {
         try {
-            biblioteca guardada = bibliotecaService.guardar(biblioteca);
+            Biblioteca guardada = bibliotecaService.guardar(biblioteca);
             return new ResponseEntity<>(guardada, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -53,9 +53,9 @@ public class Bibliotecacontroller {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<biblioteca> actualizar(@PathVariable Integer id, @RequestBody biblioteca datosNuevos) {
+    public ResponseEntity<Biblioteca> actualizar(@PathVariable Integer id, @RequestBody Biblioteca datosNuevos) {
         try {
-            biblioteca actualizada = bibliotecaService.actualizar(id, datosNuevos);
+            Biblioteca actualizada = bibliotecaService.actualizar(id, datosNuevos);
             return new ResponseEntity<>(actualizada, HttpStatus.OK);
         } catch (RuntimeException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -1,19 +1,17 @@
 package com.tienda.servicio_videojuego.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.tienda.servicio_videojuego.DTO.DetalleOfertaDTO;
 import com.tienda.servicio_videojuego.service.DetalleOfertaService;
 
 @RestController
-@RequestMapping("/api/v1/detalle-oferta")
+@RequestMapping("/api/v1/detalle-ofertas")
 public class DetalleOfertaController {
     
     @Autowired

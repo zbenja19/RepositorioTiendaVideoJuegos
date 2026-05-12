@@ -2,20 +2,17 @@ package com.tienda.servicio_videojuego.service;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.tienda.servicio_videojuego.DTO.PedidoDTO;
-
 import com.tienda.servicio_videojuego.model.Pedido;
 import com.tienda.servicio_videojuego.model.VideoJuego;
 import com.tienda.servicio_videojuego.repository.PedidoRepository;
-
 import jakarta.transaction.Transactional;
+
 @Service
 @Transactional
-public class Pedidoservice {
+public class PedidoService {
 @Autowired
     private PedidoRepository pedidoRepository;
 

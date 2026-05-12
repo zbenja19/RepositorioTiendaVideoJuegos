@@ -13,15 +13,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.tienda.servicio_videojuego.model.Carro;
-import com.tienda.servicio_videojuego.service.carroservice;
+import com.tienda.servicio_videojuego.service.CarroService;
 
 @RestController
-@RequestMapping("/api/v1/Carrito")
-public class Carrocontroller {
+@RequestMapping("/api/v1/carritos")
+public class CarroController {
     @Autowired
-    private carroservice carroService;
+    private CarroService carroService;
 
     @GetMapping
     public ResponseEntity<List<Carro>> obtenerTodo() {

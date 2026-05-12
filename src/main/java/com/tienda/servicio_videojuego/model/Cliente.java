@@ -51,7 +51,7 @@ public class Cliente {
 
     @ManyToOne
     @JoinColumn(name="idbiblioteca")
-    private biblioteca biblioteca;
+    private Biblioteca biblioteca;
 
     @ManyToMany
     @JoinColumn(name="idpedido")

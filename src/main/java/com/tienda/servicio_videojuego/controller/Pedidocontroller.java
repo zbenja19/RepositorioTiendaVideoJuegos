@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.tienda.servicio_videojuego.DTO.PedidoDTO;
 import com.tienda.servicio_videojuego.model.Pedido;
-import com.tienda.servicio_videojuego.service.Pedidoservice;
+import com.tienda.servicio_videojuego.service.PedidoService;
 
 @RestController
-@RequestMapping("/api/v1/Pedidos")
-public class Pedidocontroller {
+@RequestMapping("/api/v1/pedidos")
+public class PedidoController {
     @Autowired
-    private Pedidoservice pedidoService;
+    private PedidoService pedidoService;
 
     @GetMapping
     public ResponseEntity<List<PedidoDTO>> obtenerTodos() {

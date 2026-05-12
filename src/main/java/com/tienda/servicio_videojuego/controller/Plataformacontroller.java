@@ -12,15 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.tienda.servicio_videojuego.model.Plataforma;
-import com.tienda.servicio_videojuego.service.Plataformaservice;
+import com.tienda.servicio_videojuego.service.PlataformaService;
+
 @RestController
-@RequestMapping("/api/v1/Plataformas")
-public class Plataformacontroller {
+@RequestMapping("/api/v1/plataformas")
+public class PlataformaController {
     
     @Autowired
-    private Plataformaservice plataformaService;
+    private PlataformaService plataformaService;
 
     @GetMapping
     public ResponseEntity<List<Plataforma>> obtenerTodas() {

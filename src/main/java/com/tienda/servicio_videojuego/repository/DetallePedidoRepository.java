@@ -14,6 +14,6 @@ public interface DetallePedidoRepository extends JpaRepository<DetallePedido, In
 
     List<DetallePedido> findByClase(String clase);
 
-    @Query("SELECT p FROM p WHERE p.idDetallePedido = :idDetallePedido")
+    @Query("SELECT p FROM DetallePedido WHERE p.idDetallePedido = :idDetallePedido")
     List<DetallePedido> buscarPedidos(@Param("idDetallePedido") Long idDetallePedido);
 }

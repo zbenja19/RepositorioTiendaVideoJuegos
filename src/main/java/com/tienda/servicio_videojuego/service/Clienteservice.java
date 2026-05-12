@@ -16,7 +16,7 @@ import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
-public class Clienteservice {
+public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
 
@@ -82,8 +82,8 @@ public class Clienteservice {
         }
 
         List<String> infoPedidos = new ArrayList<>();
-        if (cliente.getPedidos() != null) { 
-            for (Pedido p : cliente.getPedidos()) {
+        if (cliente.getPedido() != null) { 
+            for (Pedido p : cliente.getPedido()) {
                 infoPedidos.add("Pedido #" + p.getId());
             }
         }

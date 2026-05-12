@@ -12,7 +12,8 @@ import jakarta.transaction.Transactional;
 
 @Service
 @Transactional
-public class Plataformaservice {
+public class PlataformaService {
+    
     @Autowired
     private PlataformaRepository plataformaRepository;
 

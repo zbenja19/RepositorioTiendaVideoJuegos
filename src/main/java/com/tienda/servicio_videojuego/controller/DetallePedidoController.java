@@ -10,13 +10,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.tienda.servicio_videojuego.DTO.DetallePedidoDTO;
 import com.tienda.servicio_videojuego.model.DetallePedido;
 import com.tienda.servicio_videojuego.service.DetallePedidoService;
 
 @RestController
-@RequestMapping("/api/v1/detalle-pedido")
+@RequestMapping("/api/v1/detalle-pedidos")
 public class DetallePedidoController {
 
     @Autowired
