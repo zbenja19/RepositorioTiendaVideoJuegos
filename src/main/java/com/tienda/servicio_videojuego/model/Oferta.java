@@ -8,9 +8,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,22 +20,27 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="oferta")
+@Table(name="ofertas")
 public class Oferta {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer idOferta;
 
-    @NotBlank(message="La fecha de inicio de la oferta de los juegos es obligatoria")
+    @NotNull(message = "El descuento es obligatorio")
+    @Min(value = 0 , message = "El descuento no puede ser negativo")
+    @Column(name = "descuento", nullable = false)
+    private Double descuento;
+
+    @NotNull(message="La fecha es obligatoria")
     @Column(name="fecha_inicio", nullable=false)
     private Date fechaInicio;
 
-    @NotBlank(message="La fecha de término de la oferta de los juegos es obligatoria")
+    @NotNull(message="La fecha es obligatoria")
     @Column(name="fecha_termino", nullable=false)
     private Date fechaTermino;
     
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name="idVideoJuego")
     private VideoJuego VideoJuego;
 }

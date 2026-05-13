@@ -10,6 +10,7 @@ public class VideoJuegoDTO {
     private String descripcion;
     private Double precio;
     private Integer stock;
+    private String genero;
     private String nombreCategoria;// Cambie los atributos de Integer a String para
     private String nombreplataforma;// poder validar sin errores en el dto
     private String nombreProveedor;

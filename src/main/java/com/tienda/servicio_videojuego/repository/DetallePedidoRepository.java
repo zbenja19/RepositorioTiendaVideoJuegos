@@ -12,8 +12,7 @@ import com.tienda.servicio_videojuego.model.DetallePedido;
 @Repository
 public interface DetallePedidoRepository extends JpaRepository<DetallePedido, Integer> {
 
-    List<DetallePedido> findByClase(String clase);
 
-    @Query("SELECT p FROM DetallePedido WHERE p.idDetallePedido = :idDetallePedido")
-    List<DetallePedido> buscarPedidos(@Param("idDetallePedido") Long idDetallePedido);
+    @Query("SELECT p FROM DetallePedido p WHERE p.idDetallePedido = :idDetallePedido")
+    List<DetallePedido> buscarPedidos(@Param("idDetallePedido") Integer idDetallePedido);
 }

@@ -2,8 +2,10 @@ package com.tienda.servicio_videojuego.service;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.tienda.servicio_videojuego.DTO.OfertaDTO;
 import com.tienda.servicio_videojuego.model.Oferta;
 import com.tienda.servicio_videojuego.repository.OfertaRepository;
@@ -36,16 +38,16 @@ public class OfertaService {
     }
 
     private OfertaDTO convertirAOfertaDTO(Oferta oferta){
-        OfertaDTO ofertaDTO = new OfertaDTO();
-        ofertaDTO.setIdOferta(oferta.getIdOferta());
-        ofertaDTO.setDescripcion(oferta.getDescripcion());
-        ofertaDTO.setDescuento(oferta.getDescuento());
-        if (oferta.getDescripcion() != null){
-            ofertaDTO.setDescripcion(oferta.getDescripcion());
-        }else{
-            ofertaDTO.setDescripcion("Desconocida");
+        OfertaDTO dto = new OfertaDTO();
+        dto.setIdOferta(oferta.getIdOferta());
+        dto.setDescuento(oferta.getDescuento());
+        dto.setFechaInicio(oferta.getFechaInicio());
+        dto.setFechaTermino(oferta.getFechaTermino());
+        
+        if (oferta.getVideoJuego() != null){
+            dto.setIdVideoJuego(oferta.getVideoJuego().getIdVideoJuego());
         }
-        return ofertaDTO;
+        return dto;
     }
 
 }

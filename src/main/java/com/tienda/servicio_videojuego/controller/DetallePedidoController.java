@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.tienda.servicio_videojuego.DTO.DetallePedidoDTO;
 import com.tienda.servicio_videojuego.model.DetallePedido;
 import com.tienda.servicio_videojuego.service.DetallePedidoService;
@@ -31,7 +33,7 @@ public class DetallePedidoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> buscarPorId(Integer idDetallePedido){
+    public ResponseEntity<?> buscarPorId(@PathVariable Integer idDetallePedido){
         try {
             DetallePedidoDTO detallePedidoDTO = detallePedidoService.buscarPorId(idDetallePedido);
             return new ResponseEntity<>(detallePedidoDTO, HttpStatus.OK);

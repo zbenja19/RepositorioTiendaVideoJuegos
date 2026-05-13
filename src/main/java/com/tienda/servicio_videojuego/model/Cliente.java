@@ -1,13 +1,14 @@
 package com.tienda.servicio_videojuego.model;
 
+import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -47,15 +48,13 @@ public class Cliente {
     @Min(value = 0000, message = "la contraseña debe ser de 4 dígitos")
     @Max(value = 9999, message = "la contraseña no puede tener más de 4 dígitos")
     @Column(nullable = false)
-    private Integer contraseña;
+    private String contrasena;
 
     @ManyToOne
-    @JoinColumn(name="idbiblioteca")
+    @JoinColumn(name = "idbiblioteca")
     private Biblioteca biblioteca;
 
-    @ManyToMany
-    @JoinColumn(name="idpedido")
-    private Pedido pedido;
-
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos;
 
 }

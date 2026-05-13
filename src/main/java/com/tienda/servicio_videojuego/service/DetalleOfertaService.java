@@ -40,16 +40,12 @@ public class DetalleOfertaService {
         dto.setIdDetalleOferta(detalle.getIdDetalleOferta());
 
         
-        if (detalle.getIdDetalleOferta() != null) {
-            dto.setIdOferta(detalle.getIdDetalleOferta().getIdDetalleOferta());
-        } else {
-            dto.setIdOferta(0);
+        if (detalle.getOferta() != null) {
+            dto.setIdOferta(detalle.getOferta().getIdOferta());
         }
         
-        if (detalle.getVideojuego() != null) {
-            dto.setIdVideoJuegos(detalle.getVideojuego().getIdVideoJuego());
-        } else {
-            dto.setIdVideoJuegos(0);
+        if (detalle.getVideoJuego() != null) {
+            dto.setIdVideoJuego(detalle.getVideoJuego().getIdVideoJuego());
         }
 
         return dto;

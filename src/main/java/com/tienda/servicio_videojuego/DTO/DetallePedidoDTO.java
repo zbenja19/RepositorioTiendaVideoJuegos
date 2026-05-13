@@ -6,6 +6,7 @@ import lombok.Data;
 public class DetallePedidoDTO {
    
    private Integer idDetallePedido;
-   private String idCarrito;
-   private String idVideoJuego;
+   private Double precio;
+   private Integer idPedido;
+   private Integer idVideoJuego;
 }

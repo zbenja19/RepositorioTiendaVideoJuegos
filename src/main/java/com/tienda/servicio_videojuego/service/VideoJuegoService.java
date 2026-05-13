@@ -65,6 +65,9 @@ public class VideoJuegoService {
         if(nvoVideoJuego.getStock() != null){
             videojuegoDTO.setStock(nvoVideoJuego.getStock());
         }
+        if(nvoVideoJuego.getGenero() != null){
+            videojuegoDTO.setGenero(nvoVideoJuego.getGenero());
+        }
         if(nvoVideoJuego.getCategoria() != null){
             videojuegoDTO.setCategoria(nvoVideoJuego.getCategoria());
         }
@@ -86,6 +89,8 @@ public class VideoJuegoService {
         videoJuegoDTO.setDescripcion(videoJuego.getDescripcion());
         videoJuegoDTO.setPrecio(videoJuego.getPrecio());
         videoJuegoDTO.setStock(videoJuego.getStock());
+        videoJuegoDTO.setGenero(videoJuego.getGenero());
+        
 
         if (videoJuego.getCategoria() != null) {
             videoJuegoDTO.setNombreCategoria(videoJuego.getCategoria().getNombre());

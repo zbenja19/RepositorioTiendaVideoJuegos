@@ -46,9 +46,12 @@ public class VideoJuego {
     @Min(value= 0, message= "El stock no puede ser negativo")
     @Column(name="stock", nullable=false)
     private Integer stock;
+
+    @Column(name = "genero" )
+    private String genero;
     
-    @ManyToOne
-    @JoinColumn(name="idCategoria")
+    @ManyToOne // se explica como muchos juegos pertenecen a una categoria y una categoria pertenece a muchos juegos
+    @JoinColumn(name="idCategoria") //Asignas el nombre a la columna
     private Categoria categoria;
 
     @ManyToOne

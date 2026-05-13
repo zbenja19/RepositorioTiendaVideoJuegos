@@ -41,13 +41,15 @@ public class DetallePedidoService {
         DetallePedidoDTO detallePedidoDTO = new DetallePedidoDTO();
 
         detallePedidoDTO.setIdDetallePedido(detallePedido.getIdDetallePedido());
+        detallePedidoDTO.setPrecio(detallePedido.getPrecio());
 
+        if (detallePedido.getPedido() != null){
+            detallePedidoDTO.setIdPedido(detallePedido.getPedido().getId());
+        }
         if (detallePedido.getVideoJuego() != null) {
             detallePedidoDTO.setIdVideoJuego(detallePedido.getVideoJuego().getIdVideoJuego());
-        } else {
-            
-            detallePedidoDTO.setIdVideoJuego(0); 
-        }
+        } 
+
         return detallePedidoDTO;
     }
 }

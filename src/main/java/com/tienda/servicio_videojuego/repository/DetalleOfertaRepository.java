@@ -10,8 +10,7 @@ import com.tienda.servicio_videojuego.model.DetalleOfertas;
 
 public interface DetalleOfertaRepository extends JpaRepository <DetalleOfertas, Integer>{
 
-    List<DetalleOfertas> findByClase(String clase);
 
-    @Query("SELECT d FROM Oferta d WHERE d.oferta.id = :idOferta ")
-    List<DetalleOfertas> buscarOfertas(@Param("idOferta") Long  idOferta);
+    @Query("SELECT d FROM DetalleOfertas d WHERE d.oferta.id = :idOferta ")
+    List<DetalleOfertas> buscarOfertas(@Param("idOferta") Integer  idOferta);
 }

@@ -23,7 +23,7 @@ public class Proveedor {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer idProveedor;
 
-    @NotBlank(message="El nombre del proveedor es obligatoria")
+    @NotBlank(message="El nombre del proveedor es obligatorio")
     @Size(min=2,max=50)
     @Column(name="proveedor", nullable=false)
     private String nombre;
@@ -33,7 +33,7 @@ public class Proveedor {
     @Column(nullable=false,length=60)
     private String email;
 
-    @Column(length=200)
+    @Column(length=20)
     private String telefono;
 
 }

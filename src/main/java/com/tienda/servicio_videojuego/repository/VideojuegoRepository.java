@@ -12,12 +12,8 @@ import com.tienda.servicio_videojuego.model.VideoJuego;
 @Repository
 public interface VideojuegoRepository extends JpaRepository<VideoJuego,Integer> {
 
-    @Query("SELECT v FROM VideoJuego v WHERE v.categoria.id = :idCategoria")
+    @Query("SELECT v FROM VideoJuego v WHERE v.categoria.idCategoria = :idCategoria")
     List<VideoJuego> buscarVideoJuegos(@Param("idCategoria") Integer idCategoria);
 
     List<VideoJuego>findByNombreContaining(String nombre);
-
-
-    
-
 }
