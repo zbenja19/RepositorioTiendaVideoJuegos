@@ -10,8 +10,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -44,9 +42,10 @@ public class Cliente {
     @Column(length=20,nullable = false)
     private String telefono;
 
+    //Cambie min y max por size porque ela contraseña es
+    // string no un integer
     @NotNull(message = "la contraseña es obligatorio")
-    @Min(value = 0000, message = "la contraseña debe ser de 4 dígitos")
-    @Max(value = 9999, message = "la contraseña no puede tener más de 4 dígitos")
+    @Size(min = 5, max = 5, message = "La contraseña debe tener 5 carateres.")
     @Column(nullable = false)
     private String contrasena;
 

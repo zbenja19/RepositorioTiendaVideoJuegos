@@ -13,4 +13,4 @@ public interface DetalleOfertaRepository extends JpaRepository <DetalleOfertas, 
 
     @Query("SELECT d FROM DetalleOfertas d WHERE d.oferta.id = :idOferta ")
     List<DetalleOfertas> buscarOfertas(@Param("idOferta") Integer  idOferta);
-}
+}           

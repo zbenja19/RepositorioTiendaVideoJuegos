@@ -45,10 +45,10 @@ public class Pedido {
     @Column(nullable = false)
     private Boolean estado;
 
-    @OneToMany(mappedBy="pedido") // se agrego para poder untilizar los get de videojuego en el dtp de perdidoService
-    private List<VideoJuego> videoJuegos;
-
     @ManyToOne
     @JoinColumn(name = "id_cliente") // se greaga para crear la relacion con cliente 
     private Cliente cliente;
+
+    @OneToMany(mappedBy="pedido")
+    private List<DetallePedido> detallesPedido;
 }

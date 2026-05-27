@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -24,8 +26,11 @@ public class Carro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    //reemplace @Size por @Min y @Max
+    //porque Size no funciona con Integer.
     @NotNull
-    @Size(min=1,max=10)
+    @Min(value = 1, message = "La cantidad minima es 1 unid")
+    @Max(value = 100, message = "La cantidad no puede exceder 100 unid")
     private Integer cantidad;
 
     @NotBlank(message ="ingrese la fecha")

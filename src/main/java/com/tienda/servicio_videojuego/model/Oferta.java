@@ -42,5 +42,5 @@ public class Oferta {
     
     @ManyToOne
     @JoinColumn(name="idVideoJuego")
-    private VideoJuego VideoJuego;
+    private VideoJuego videoJuego;
 }

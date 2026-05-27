@@ -37,16 +37,36 @@ public class PagoService {
         return convertirAPagoDTO(pagoGuardado);
     }
 
+    //cree este metodo para calcular el total de pago
+    //si no hay pagos devuelve 0.0
+    public Double totalPagos(){
+        Double total = pagoRepository.calcularTotalPagos();
+        if (total != null){
+            return total;
+        }else{
+            return 0.0;
+        }
+    }
+
+    //cree este metodo para buscar pago segun su estado.
+    //como pendiente,efectuado,cancelado
+    public List<Pago> buscarPagosPorEstado(String estadoPago){
+        return pagoRepository.buscarPagosPorEstado(estadoPago);
+    }
+
+
+
+
     private PagoDTO convertirAPagoDTO(Pago pago){
         PagoDTO pagoDTO = new PagoDTO();
         pagoDTO.setIdPago(pago.getIdPago());
-        pagoDTO.setIdDetallePedido(pago.getIdDetallePedido());
-        pagoDTO.setMonto(pago.getMonto());
-        if (pago.getIdDetallePedido() != null){
-            pagoDTO.setIdDetallePedido(pago.getIdDetallePedido());
-        }else{
-            pagoDTO.setIdDetallePedido("Desconocida");
-        }
+        pagoDTO.setEstadoPago(pago.getEstadoPago());
+       
+        if (pago.getDetallePedido() != null){
+            pagoDTO.setIdDetallePedido(pago.getDetallePedido().getIdDetallePedido());
+         
+             pagoDTO.setMonto(pago.getDetallePedido().getPrecio());
+           }
         return pagoDTO;
     }
 }

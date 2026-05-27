@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -29,4 +31,9 @@ public class Pago {
     @Column(name="estadoPago", nullable=false)
     private String estadoPago;
 
+    // Corregi la relacion  de pago con DetallePedido
+    //porque un pago debe estar asociado a un detalle pedido
+    @ManyToOne
+    @JoinColumn(name = "id_detalle_pedido",nullable = false)
+    private DetallePedido detallePedido;
 }

@@ -7,9 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.tienda.servicio_videojuego.DTO.PedidoDTO;
+import com.tienda.servicio_videojuego.model.DetallePedido;
 import com.tienda.servicio_videojuego.model.Pedido;
-import com.tienda.servicio_videojuego.model.VideoJuego;
-import com.tienda.servicio_videojuego.repository.ClienteRepository;
 import com.tienda.servicio_videojuego.repository.PedidoRepository;
 
 import jakarta.transaction.Transactional;
@@ -81,15 +80,15 @@ public class PedidoService {
         } else {
             dto.setNombreCliente("Sin cliente asignado");
         }
-
         List<String> nombresgames = new ArrayList<>();
-        if (pedido.getVideojuegos() != null) {
-            for (VideoJuego juego : pedido.getVideojuegos()) {
-                nombresgames.add(juego.getNombre());
+        if (pedido.getDetallesPedido() != null) {
+            for (DetallePedido detalleP : pedido.getDetallesPedido()) {
+                if (detalleP.getVideoJuego() != null){
+                    nombresgames.add(detalleP.getVideoJuego().getNombre());
+                } 
             }
         }
         dto.setNombresVideojuegos(nombresgames);
-
         return dto;
     }
 }

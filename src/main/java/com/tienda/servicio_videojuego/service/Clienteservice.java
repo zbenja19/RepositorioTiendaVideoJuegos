@@ -61,7 +61,7 @@ public class ClienteService {
             clienteExistente.setTelefono(datosNuevos.getTelefono());
         }
         if(datosNuevos.getContrasena() != null) {
-            clienteExistente.setContrasena(datosNuevos.getContrasena);
+            clienteExistente.setContrasena(datosNuevos.getContrasena());
         }
         
         return clienteRepository.save(clienteExistente);
@@ -74,13 +74,6 @@ public class ClienteService {
         dto.setEmail(cliente.getEmail());
         dto.setTelefono(cliente.getTelefono());
 
-        if (cliente.getPedidos() != null) {
-                 // En vez de buscar un nombre, pasamos el ID directamente      
-           dto.setNombrePedidos(cliente.getPedidos().getFechaAgregada());
-        } else {
-            dto.setNombrebiblioteca(null);
-        }
-
         List<String> infoPedidos = new ArrayList<>();
         if (cliente.getPedidos() != null) { 
             for (Pedido p : cliente.getPedidos()) {
@@ -88,7 +81,6 @@ public class ClienteService {
             }
         }
         dto.setNombrespedidos(infoPedidos);
-
         return dto;
     }
 }
