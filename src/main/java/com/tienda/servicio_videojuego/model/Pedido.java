@@ -1,5 +1,6 @@
 package com.tienda.servicio_videojuego.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -13,9 +14,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,10 +29,9 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message ="ingrese la fecha")
-    @Size(min=10,max=10, message = "La fecha debe tener 10 caracteres ")
+    @NotNull(message = "La fecha es obligatoria")
     @Column(name="fecha_agregada")
-    private String fechaAgregada;
+    private LocalDate fechaAgregada;
 
     @NotNull(message = "El monto total es requerido")
     @Min(value = 0, message = "El total no puede ser menor a 0")

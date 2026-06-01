@@ -27,7 +27,7 @@ public class Pago {
     private Integer idPago;
 
     @NotBlank(message="El estado del pago es obligatorio")
-    @Size(min=10, max=20,message="El estado del pago debe ser de entre 10 y 20 caracteres")
+    @Size(min=5, max=20,message="El estado del pago debe ser de entre 10 y 20 caracteres")
     @Column(name="estadoPago", nullable=false)
     private String estadoPago;
 

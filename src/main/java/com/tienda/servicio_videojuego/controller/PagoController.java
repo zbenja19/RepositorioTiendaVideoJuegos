@@ -1,6 +1,7 @@
 package com.tienda.servicio_videojuego.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.tienda.servicio_videojuego.DTO.PagoDTO;
 import com.tienda.servicio_videojuego.model.Pago;
 import com.tienda.servicio_videojuego.service.PagoService;
@@ -31,8 +33,13 @@ public class PagoController {
         return new ResponseEntity<>("No se encontraron pagos", HttpStatus.NOT_FOUND);
     }
 
+    @GetMapping("/total")
+    public ResponseEntity<Double> totalPagos(){
+        return ResponseEntity.ok(pagoService.totalPagos());
+    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<?> buscarPorId(@PathVariable Integer idPago){
+    public ResponseEntity<?> buscarPorId(@PathVariable ("id") Integer idPago){
         try {
             PagoDTO pagoDTO = pagoService.buscarPorId(idPago);
             return new ResponseEntity<>(pagoDTO, HttpStatus.OK);
@@ -50,4 +57,18 @@ public class PagoController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/estado/{estadoPago}")
+    public ResponseEntity<?> buscarPorEstado(@PathVariable String estadoPago){
+        try{
+            return new ResponseEntity<>(pagoService.buscarPagosPorEstado(estadoPago), HttpStatus.OK);
+
+        }catch (RuntimeException e){
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        
+        }
+    }
+
+
+
 }

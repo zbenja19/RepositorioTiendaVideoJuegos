@@ -1,6 +1,6 @@
 package com.tienda.servicio_videojuego.model;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,13 +32,13 @@ public class Oferta {
     @Column(name = "descuento", nullable = false)
     private Double descuento;
 
-    @NotNull(message="La fecha es obligatoria")
+    @NotNull(message = "La fecha es obligatoria")
     @Column(name="fecha_inicio", nullable=false)
-    private Date fechaInicio;
+    private LocalDate fechaInicio;
 
-    @NotNull(message="La fecha es obligatoria")
+    @NotNull(message = "La fecha es obligatoria")
     @Column(name="fecha_termino", nullable=false)
-    private Date fechaTermino;
+    private LocalDate fechaTermino;
     
     @ManyToOne
     @JoinColumn(name="idVideoJuego")

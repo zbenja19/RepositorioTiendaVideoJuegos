@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.tienda.servicio_videojuego.DTO.ClienteDTO;
 import com.tienda.servicio_videojuego.model.Cliente;
 import com.tienda.servicio_videojuego.service.ClienteService;
 
 @RestController
-@RequestMapping("/api/v1/pedidos")
+@RequestMapping("/api/v1/clientes")
 public class ClienteController {
     
     @Autowired

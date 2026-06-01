@@ -50,12 +50,18 @@ public class PagoService {
 
     //cree este metodo para buscar pago segun su estado.
     //como pendiente,efectuado,cancelado
-    public List<Pago> buscarPagosPorEstado(String estadoPago){
-        return pagoRepository.buscarPagosPorEstado(estadoPago);
+    public List<PagoDTO> buscarPagosPorEstado(String estadoPago){
+
+        List<Pago> pagos = pagoRepository.buscarPagosPorEstado(estadoPago);
+        if (pagos.isEmpty()){
+            throw new RuntimeException("No hay pagos registrados para este estado");
+        }
+        List<PagoDTO> pagosDTO = new ArrayList<>();
+        for (Pago pago : pagos) {
+            pagosDTO.add(convertirAPagoDTO(pago));
+        }
+        return pagosDTO;
     }
-
-
-
 
     private PagoDTO convertirAPagoDTO(Pago pago){
         PagoDTO pagoDTO = new PagoDTO();

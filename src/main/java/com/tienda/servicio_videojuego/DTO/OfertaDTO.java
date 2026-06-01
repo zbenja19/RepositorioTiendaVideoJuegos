@@ -1,6 +1,7 @@
 package com.tienda.servicio_videojuego.DTO;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
 
 import lombok.Data;
 
@@ -9,7 +10,7 @@ public class OfertaDTO {
 
     private Integer idOferta;
     private Double descuento;
-    private Date fechaInicio;
-    private Date fechaTermino;
+    private LocalDate fechaInicio;
+    private LocalDate fechaTermino;
     private Integer idVideoJuego;
 }

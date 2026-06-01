@@ -33,7 +33,7 @@ public class DetallePedidoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> buscarPorId(@PathVariable Integer idDetallePedido){
+    public ResponseEntity<?> buscarPorId(@PathVariable("id") Integer idDetallePedido){
         try {
             DetallePedidoDTO detallePedidoDTO = detallePedidoService.buscarPorId(idDetallePedido);
             return new ResponseEntity<>(detallePedidoDTO, HttpStatus.OK);

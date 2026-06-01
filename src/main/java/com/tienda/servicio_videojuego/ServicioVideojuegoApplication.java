@@ -1,4 +1,4 @@
-package com.tienda.servicio_videojuego.service;
+package com.tienda.servicio_videojuego;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

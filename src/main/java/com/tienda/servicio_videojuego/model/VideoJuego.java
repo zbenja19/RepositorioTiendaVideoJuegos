@@ -62,4 +62,8 @@ public class VideoJuego {
     @JoinColumn(name="idProveedor")
     private Proveedor proveedor;
 
+    @ManyToOne
+    @JoinColumn(name="idBiblioteca")
+    private Biblioteca biblioteca;
+
 }
