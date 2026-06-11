@@ -6,8 +6,7 @@
 3. **Karol Carrasco**
 
 ## Descripción del proyecto
-El proyecto consiste en una plataforma especializada en una tienda de venta de video juegos digitales. La plataforma permite visualizar un catálogo de juegos, el cual va por distintintas categorías de video juegos.
-Buscando mejor organización del sistema al querer mantener el orden los video juegos dentro de la tienda.
+Este proyecto consiste en el desarrollo de una tienda virtual de videojuegos digitales, diseñada para ofrecer a los usuarios una experiencia de navegación intuitiva y dinámica. La plataforma cuenta con un catálogo inteligente organizado por categorías y géneros, lo que permite a los jugadores explorar, filtrar y encontrar sus títulos favoritos de manera rápida y sencilla. El objetivo principal es fusionar un diseño visual atractivo con un sistema de orden eficiente que mantenga la tienda siempre estructurada y fácil de usar.
 
 ## Listado de Microservicios Implementados 
 1. **Registro de Usuarios**
